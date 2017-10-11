@@ -7,9 +7,11 @@ RSpec.feature "user logs in/out" do
     click_link "Sign in with Github"
     expect(page).to have_link("Logout")
     click_link "Logout"
+    expect(page).to_not have_link("Logout")
     expect(page).to have_link("Sign in with Github")
   end
 end
+
 def stub_omniauth
   OmniAuth.config.test_mode = true
   OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
@@ -24,5 +26,5 @@ def stub_omniauth
         "Github" => "www.fake-github.com"
       },
     }
-  })
-end
+    })
+  end
