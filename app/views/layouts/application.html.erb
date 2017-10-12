@@ -1,20 +1,98 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>ApiCurious</title>
-    <%= csrf_meta_tags %>
+<head>
+  <title>ApiCurious</title>
+  <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
-  </head>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+</head>
 
-  <body>
-    <% if current_user %>
-    <%= link_to "Logout", logout_path, method: :delete %>
-    <% else %>
-    <%= link_to "Sign in with Github", github_login_path %>
-    <% end %>
+<body>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <img class="github_logo" src="https://www.shareicon.net/download/2015/09/15/101512_logo_512x512.png" alt="github_logo">
+      </div>
 
-    <%= yield %>
-  </body>
+
+        <form class="navbar-form navbar-left">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search">
+          </div>
+        </form>
+        <ul class="nav navbar-nav">
+          <li><a href="#">Pull Requests</a></li>
+          <li><a href="#">Issues</a></li>
+          <li><a href="#">Marketplace</a></li>
+          <li><a href="#">Explore</a></li>
+        </ul>
+        <% if current_user %>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown plus_drop">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">+ <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">New Repository</a></li>
+              <li><a href="#">Import Repository</a></li>
+              <li><a href="#">New Gist</a></li>
+              <li><a href="#">New Organization</a></li>
+            </ul>
+          </li>
+          <li class="dropdown user_drop">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <p>Signed in as</p>
+              <p><strong><%= @userinfo.username %></strong></p>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Your profile</a></li>
+              <li><a href="#">Your stars</a></li>
+              <li><a href="#">your Gists</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Help</a></li>
+              <li><a href="#">Settings</a></li>
+              <%= link_to "Logout", logout_path, method: :delete %>
+            </ul>
+          </li>
+        </ul>
+        <% else %>
+        <%= link_to "Sign in with Github", github_login_path %>
+        <% end %>
+
+
+    </div><!-- /.container-fluid -->
+  </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <%= yield %>
+</body>
 </html>

@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-2">
+    <div class="user_info">
+      <img class="user_img" src="<%= @userinfo.userimg %>" alt="">
+      <h1><%= @userinfo.username %></h1>
+      <p class="user_info_text"><%= @userinfo.userlogin %></p>
+      <p><%= @userinfo.userbio %></p>
+      <hr>
+      <p><strong>Location: </strong><%= @userinfo.userlocation %></p>
+      <%= mail_to @userinfo.useremail %>
+      <hr>
+      <h4>Organizations</h4>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="repos">
+      <h3>Repos</h3>
+      <hr>
+      <% @repos.each do |repo| %>
+        <% if repo.owner == @userinfo.userlogin %>
+        <h3><%= link_to repo.name, repo.url %></h3>
+        <p><%= repo.description %></p>
+        <p><%= repo.language %>  Forks <%= repo.forks %> Updated At: <%= repo.updatedat -%></p>
+        <hr>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-md-2"></div>
+
+</div>
