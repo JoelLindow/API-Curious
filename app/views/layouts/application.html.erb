@@ -13,18 +13,10 @@
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <!-- <a class="navbar-brand" href="#">Brand</a> -->
         <img class="github_logo" src="https://www.shareicon.net/download/2015/09/15/101512_logo_512x512.png" alt="github_logo">
       </div>
 
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
         <form class="navbar-form navbar-left">
           <div class="form-group">
             <input type="text" class="form-control" placeholder="Search">
@@ -36,20 +28,38 @@
           <li><a href="#">Marketplace</a></li>
           <li><a href="#">Explore</a></li>
         </ul>
+        <% if current_user %>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Link</a></li>
-          <li class="dropdown">
+          <li class="dropdown plus_drop">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">+ <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">New Repository</a></li>
+              <li><a href="#">Import Repository</a></li>
+              <li><a href="#">New Gist</a></li>
+              <li><a href="#">New Organization</a></li>
+            </ul>
+          </li>
+          <li class="dropdown user_drop">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
+              <p>Signed in as</p>
+              <p><strong><%= @userinfo.username %></strong></p>
               <li role="separator" class="divider"></li>
-              <li><a href="#">Separated link</a></li>
+              <li><a href="#">Your profile</a></li>
+              <li><a href="#">Your stars</a></li>
+              <li><a href="#">your Gists</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Help</a></li>
+              <li><a href="#">Settings</a></li>
+              <%= link_to "Logout", logout_path, method: :delete %>
             </ul>
           </li>
         </ul>
-      </div><!-- /.navbar-collapse -->
+        <% else %>
+        <%= link_to "Sign in with Github", github_login_path %>
+        <% end %>
+
+
     </div><!-- /.container-fluid -->
   </nav>
 
@@ -82,11 +92,6 @@
 
 
 
-  <% if current_user %>
-  <%= link_to "Logout", logout_path, method: :delete %>
-  <% else %>
-  <%= link_to "Sign in with Github", github_login_path %>
-  <% end %>
 
   <%= yield %>
 </body>
