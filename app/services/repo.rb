@@ -6,7 +6,7 @@ class Repo
     @url  = repo_data[:html_url]
     @description = repo_data[:description]
     @language = repo_data[:language]
-    @updatedat = repo_data[:updated_at]
+    @updatedat = Time.parse(repo_data[:updated_at]).to_date
     @forks = repo_data[:forks]
     @owner = repo_data[:owner][:login]
   end

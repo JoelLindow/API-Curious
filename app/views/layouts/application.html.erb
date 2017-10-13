@@ -15,11 +15,9 @@
       <div class="navbar-header">
         <img class="github_logo" src="https://www.shareicon.net/download/2015/09/15/101512_logo_512x512.png" alt="github_logo">
       </div>
-
-
         <form class="navbar-form navbar-left">
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search">
+            <input type="text" class="form-control" placeholder="Search Github">
           </div>
         </form>
         <ul class="nav navbar-nav">
@@ -40,7 +38,7 @@
             </ul>
           </li>
           <li class="dropdown user_drop">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img class="menu_icon" src="<%= @userinfo.userimg %>" alt=""> <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <p>Signed in as</p>
               <p><strong><%= @userinfo.username %></strong></p>

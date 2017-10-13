@@ -13,21 +13,41 @@
       <h4>Organizations</h4>
     </div>
   </div>
-
-  <div class="col-md-6">
-    <div class="repos">
-      <h3>Repos</h3>
-      <hr>
-      <% @repos.each do |repo| %>
-        <% if repo.owner == @userinfo.userlogin %>
-        <h3><%= link_to repo.name, repo.url %></h3>
-        <p><%= repo.description %></p>
-        <p><%= repo.language %>  Forks <%= repo.forks %> Updated At: <%= repo.updatedat -%></p>
-        <hr>
-        <% end %>
+  <div class="col-md-6 repos">
+    <h3>Repos</h3>
+    <hr>
+    <% @repos.each do |repo| %>
+    <% if repo.owner == @userinfo.userlogin %>
+    <h3 class="repo"><%= link_to repo.name, repo.url %></h3>
+    <p><%= repo.description %></p>
+    <p>
+      <%= repo.language %>
+      <% if repo.forks != 0 %>
+      - Forks <%= repo.forks %>
       <% end %>
-    </div>
+      - Updated On: <%= repo.updatedat %>
+    </p>
+    <hr>
+    <% end %>
+    <% end %>
+    <br>
+    <h3>Commits</h3>
+    <hr>
+    <% @commits.each do |commit| %>
+    <h4 class="commit"><%= link_to commit.commitmessage, commit.commiturl %></h4>
+    <p>
+      Made
+      <% if commit.commitdate == 0 %>
+      Today
+      <% else %>
+      <%= commit.commitdate %> days ago
+      <% end %>
+    </p>
+    <p>From Repository: <%= link_to commit.reponame, commit.repourl %></p>
+    <hr>
+    <% end %>
   </div>
+
   <div class="col-md-2"></div>
 
 </div>
