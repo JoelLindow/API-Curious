@@ -9,7 +9,7 @@ feature "Authenticated User" do
 
       visit '/dashboard'
 
-      expect(page).to have_css(".repo", count: 30)
+      expect(page).to have_css("h3.repo", count: 27)
     end
   end
 end
